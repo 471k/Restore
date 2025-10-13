@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
-import type { Product } from "../../app/models/product";
 import ProductList from "./ProductList";
+import { useFetchProductsQuery } from "./catalogApi";
 
 export default function Catalog() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { data, isLoading } = useFetchProductsQuery();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch("https://localhost:5001/api/products");
-      const data = await response.json();
-      setProducts(data);
-    };
-
-    fetchProducts();
-  }, []);
+  if (isLoading || !data) return <div>Loading...</div>;
 
   return (
     <>
-      <ProductList products={products} />
+      <ProductList products={data} />
     </>
   );
 }
