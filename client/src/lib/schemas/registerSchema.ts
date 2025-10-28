@@ -1,0 +1,16 @@
+import z from "zod";
+// (?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$
+
+const passwordValidation = new RegExp(
+  /(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/
+);
+export const registerSchema = z.object({
+  email: z.email(),
+  password: z.string().regex(passwordValidation, {
+    message:
+      "Password must contain 1 lowercase character, 1 uppercase character, 1 number, 1 unique charater and must be between 6-10 characters",
+  }),
+});
+
+
+export type RegisterSchema = z.infer<typeof registerSchema>
