@@ -10,6 +10,9 @@ namespace API.Entities
         public int Id { get; set; }
         public required string BasketId { get; set; }
         public List<BasketItem> Items { get; set; } = []; // or the old way => new List<BasketItem>();
+        public string? ClientSecret { get; set; }
+        public string? PaymentIntentId { get; set; }
+
 
         public void AddItem(Product product, int quantity)
         {
