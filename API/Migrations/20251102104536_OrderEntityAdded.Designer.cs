@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20251102104536_OrderEntityAdded")]
+    partial class OrderEntityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -124,7 +127,6 @@ namespace API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PaymentIntentId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<long>("Subtotal")
@@ -292,14 +294,14 @@ namespace API.Migrations
                         new
                         {
                             Id = "bcf665b6-d262-4851-a994-b497e6e258c8",
-                            ConcurrencyStamp = "de1c6f78-d600-43c5-a176-07355ee2aa2b",
+                            ConcurrencyStamp = "65d6f173-4e25-4c10-90b5-66730d487ceb",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = "06168779-a6dc-40d9-9eab-7eba2bcb0110",
-                            ConcurrencyStamp = "14752d34-2dbc-4834-9169-46a222c7145d",
+                            ConcurrencyStamp = "8b66b5c2-d5cd-45d3-af77-7ed72a7ae3fd",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

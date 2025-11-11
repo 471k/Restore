@@ -88,6 +88,7 @@ export const basketApi = createApi({
         dispatch(
           basketApi.util.updateQueryData("fetchBasket", undefined, (draft) => {
             draft.items = [];
+            draft.basketId = "";
           })
         );
 
