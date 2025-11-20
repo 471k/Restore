@@ -1,7 +1,3 @@
 <Solution>
   <Project Path="API/API.csproj" />
-  <Project Path="client/client.esproj">
-    <Build />
-    <Deploy />
-  </Project>
 </Solution>

@@ -19,3 +19,29 @@
 
     ]
 }
+
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "C#: API Debug",
+//             "type": "dotnet",
+//             "request": "launch",
+//             "projectPath": "${workspaceFolder}/API.csproj",
+//             "env": {
+//                 "ASPNETCORE_ENVIRONMENT": "Development",
+//                 "ASPNETCORE_URLS": "https://localhost:5001"
+//             },
+//             "serverReadyAction": {
+//                 "action": "openExternally",
+//                 "pattern": "\\bhttps://localhost:5001\\b"
+//             },
+//             "preLaunchTask": "build"
+//         },
+//         {
+//             "name": ".NET Core Attach",
+//             "type": "coreclr",
+//             "request": "attach"
+//         }
+//     ]
+// }
