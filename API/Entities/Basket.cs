@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace API.Entities
 {
     public class Basket
@@ -12,6 +7,7 @@ namespace API.Entities
         public List<BasketItem> Items { get; set; } = []; // or the old way => new List<BasketItem>();
         public string? ClientSecret { get; set; }
         public string? PaymentIntentId { get; set; }
+        public AppCoupon? Coupon { get; set; }
 
 
         public void AddItem(Product product, int quantity)

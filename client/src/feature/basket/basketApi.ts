@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithErrorHandling } from "../../app/api/baseApi";
-import { Item, type Basket } from "../../app/models/basket";
+import type { Item, Basket } from "../../app/models/basket";
 import type { Product } from "../../app/models/product";
 import Cookies from "js-cookie";
 
@@ -95,10 +95,40 @@ export const basketApi = createApi({
         Cookies.remove("basketId");
       },
     }),
+    addCoupon: builder.mutation<Basket, string>({
+      query: (code: string) => ({
+        url: `basket/${code}`,
+        method: "POST",
+      }),
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        const { data: updatedBasket } = await queryFulfilled;
+        dispatch(
+          basketApi.util.updateQueryData("fetchBasket", undefined, (draft) => {
+            Object.assign(draft, updatedBasket);
+          })
+        );
+      },
+    }),
+    removeCoupon: builder.mutation<Basket, void>({
+      query: () => ({
+        url: "basket/remove-coupon",
+        method: "DELETE",
+      }),
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        await queryFulfilled;
+        dispatch(
+          basketApi.util.updateQueryData("fetchBasket", undefined, (draft) => {
+            draft.coupon = null;
+          })
+        );
+      },
+    }),
   }),
 });
 
 export const {
+  useAddCouponMutation,
+  useRemoveCouponMutation,
   useFetchBasketQuery,
   useAddBasketItemMutation,
   useRemoveBasketItemMutation,
